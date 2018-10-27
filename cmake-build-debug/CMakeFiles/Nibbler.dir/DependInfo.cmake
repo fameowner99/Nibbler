@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/vmiachko/Nibbler/src/GUI.cpp" "/Users/vmiachko/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/GUI.cpp.o"
-  "/Users/vmiachko/Nibbler/src/Game.cpp" "/Users/vmiachko/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/Game.cpp.o"
-  "/Users/vmiachko/Nibbler/src/Object.cpp" "/Users/vmiachko/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/Object.cpp.o"
-  "/Users/vmiachko/Nibbler/src/Position.cpp" "/Users/vmiachko/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/Position.cpp.o"
-  "/Users/vmiachko/Nibbler/src/Snake.cpp" "/Users/vmiachko/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/Snake.cpp.o"
-  "/Users/vmiachko/Nibbler/src/main.cpp" "/Users/vmiachko/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/main.cpp.o"
+  "/home/fameowner/Nibbler/src/GUI.cpp" "/home/fameowner/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/GUI.cpp.o"
+  "/home/fameowner/Nibbler/src/Game.cpp" "/home/fameowner/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/Game.cpp.o"
+  "/home/fameowner/Nibbler/src/Object.cpp" "/home/fameowner/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/Object.cpp.o"
+  "/home/fameowner/Nibbler/src/Position.cpp" "/home/fameowner/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/Position.cpp.o"
+  "/home/fameowner/Nibbler/src/Snake.cpp" "/home/fameowner/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/Snake.cpp.o"
+  "/home/fameowner/Nibbler/src/main.cpp" "/home/fameowner/Nibbler/cmake-build-debug/CMakeFiles/Nibbler.dir/src/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

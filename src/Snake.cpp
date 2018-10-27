@@ -68,3 +68,35 @@ void Snake::snakeInitialize(int x, int y)
     _vectorOfMoving.x = 0;
     _vectorOfMoving.y = -1;
 }
+
+Position Snake::getVectorOfMoving()
+{
+    return (_vectorOfMoving);
+}
+
+void Snake::setVectorOfMoving(int x, int y)
+{
+    _vectorOfMoving.x = x;
+    _vectorOfMoving.y = y;
+}
+
+void Snake::addPart()
+{
+    Object head;
+
+    head._currentPosition.x = _parts.front()._currentPosition.x + _vectorOfMoving.x;
+    head._currentPosition.y = _parts.front()._currentPosition.y + _vectorOfMoving.y;
+    _parts.push_back(head);
+}
+
+bool Snake::checkSelfCollision()
+{
+    Object head = _parts.front();
+
+    for (auto it = std::next(_parts.begin()); it != _parts.end(); ++it)
+    {
+        if (head._currentPosition == it->_currentPosition)
+            return (true);
+    }
+    return (false);
+}
