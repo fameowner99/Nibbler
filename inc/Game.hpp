@@ -8,6 +8,7 @@
 #include <random>
 #include "GUI.hpp" // will be deleted after creating dynamic library
 
+
 # define CELL_HEIGHT 100
 # define CELL_WIDTH 100
 # define MIN_HEIGHT 500

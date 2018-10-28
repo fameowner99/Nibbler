@@ -41,6 +41,7 @@ void Game::loop()
         if (eatFood())
         {
             snake.addPart();
+            system("canberra-gtk-play -f ../sounds/eat.wav &");
         }
         gui.updateWindwow();
         snake.setVectorOfMoving(vectorOfTurn.x,vectorOfTurn.y);

@@ -50,33 +50,9 @@ vector
 list
 -
 
-/home/fameowner/Nibbler/src/GUI.cpp
-../inc/GUI.hpp
-/home/fameowner/Nibbler/inc/GUI.hpp
-iostream
--
-../inc/Game.hpp
-/home/fameowner/Nibbler/inc/Game.hpp
-
 /home/fameowner/Nibbler/src/Game.cpp
 ../inc/Game.hpp
 /home/fameowner/Nibbler/inc/Game.hpp
 iostream
--
-
-/home/fameowner/Nibbler/src/Snake.cpp
-../inc/Snake.hpp
-/home/fameowner/Nibbler/inc/Snake.hpp
-../inc/Game.hpp
-/home/fameowner/Nibbler/inc/Game.hpp
-iostream
--
-
-/home/fameowner/Nibbler/src/main.cpp
-../inc/Game.hpp
-/home/fameowner/Nibbler/inc/Game.hpp
-iostream
--
-sstream
 -
 
