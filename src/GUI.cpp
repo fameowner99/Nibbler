@@ -1,7 +1,8 @@
 #include "../inc/GUI.hpp"
 
 #include <iostream>
-#include "../inc/Game.hpp"
+#include "Game.hpp"
+
 
 void GUI::createWindow(int &h, int &w)
 {
@@ -19,74 +20,95 @@ void GUI::createWindow(int &h, int &w)
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 
 
-    SDL_Surface *tmp = SDL_LoadBMP("../img/greensquare.bmp");
+    SDL_Surface *tmp = SDL_LoadBMP("img/greensquare.bmp");
+    if (!tmp)
+    {
+        std:: cout << "Couldn't load image." << std::endl;
+        exit(9);
+    }
     snakePart = SDL_CreateTextureFromSurface(renderer, tmp);
+
+    if (snakePart == NULL)
+    {
+        std::cout << "Error to create texture" << std::endl;
+        exit(9);
+    }
     delete tmp;
 
-    SDL_Surface *tmp1 = SDL_LoadBMP("../img/yellowcircle.bmp");
+    SDL_Surface *tmp1 = SDL_LoadBMP("img/yellowcircle.bmp");
     food = SDL_CreateTextureFromSurface(renderer, tmp1);
+    if (!tmp1)
+    {
+        std:: cout << "Couldn't load image." << std::endl;
+        exit(9);
+    }
+    if (food == NULL)
+    {
+        std::cout << "Error to create texture" << std::endl;
+        exit(9);
+    }
     delete tmp1;
 }
 
-bool GUI::checkEvent(Snake &snake, Position &vectorOfTurn)
+Position GUI::checkEvent(Position vec)
 {
+
+    Position resVec;
+
+    resVec.x = vec.x;
+    resVec.y = vec.y;
+
     while (SDL_PollEvent(&event))
     {
+
         if (event.type == SDL_QUIT) {
-           return (true);
+            exit(0);
         }
-        else if (event.type == SDL_KEYDOWN)
+       if (event.type == SDL_KEYDOWN)
         {
            switch (event.key.keysym.sym)
            {
                case SDLK_ESCAPE:
-                   return (true);
+                   exit(0);
+
                case SDLK_LEFT: //turn left
                {
-                    if (snake.getVectorOfMoving().x == 0)
-                    {
-                        vectorOfTurn.x = -1;
-                        vectorOfTurn.y = 0;
-                    }
+                        resVec.x = -1;
+                        resVec.y = 0;
                     break ;
                }
                case SDLK_RIGHT: //turn right
                {
-                   if (snake.getVectorOfMoving().x == 0)
-                   {
-                       vectorOfTurn.x = 1;
-                       vectorOfTurn.y = 0;
-                   }
+                        resVec.x = 1;
+                        resVec.y = 0;
+
                    break ;
                }
                case SDLK_UP: //turn up
                {
-                   if (snake.getVectorOfMoving().y == 0)
-                   {
-                       vectorOfTurn.x = 0;
-                       vectorOfTurn.y = -1;
-                   }
+
+                   resVec.x = 0;
+                   resVec.y = -1;
+
                    break ;
                }
                case SDLK_DOWN: //turn down
                {
-                   if (snake.getVectorOfMoving().y == 0)
-                   {
-                       vectorOfTurn.x = 0;
-                       vectorOfTurn.y = 1;
-                   }
+                   resVec.x = 0;
+                   resVec.y = 1;
                    break ;
                }
-
-
-
            }
 
         }
 
 
     }
-    return (false);
+    if ((resVec.x == -1 && vec.x == 1) || (resVec.x == 1 && vec.x == -1) ||
+        (resVec.y == -1 && vec.y == 1) || (resVec.y == 1 && vec.y == -1))
+        return (vec);
+
+    return (resVec);
 }
 
 void GUI::updateWindwow()

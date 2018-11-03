@@ -7,10 +7,10 @@
 #include <vector>
 #include <random>
 #include "GUI.hpp" // will be deleted after creating dynamic library
+#include "GUI1.hpp"
 
-
-# define CELL_HEIGHT 100
-# define CELL_WIDTH 100
+# define CELL_HEIGHT 50
+# define CELL_WIDTH 50
 # define MIN_HEIGHT 500
 # define MIN_WIDTH 500
 # define MAX_HEIGHT 2000
@@ -28,7 +28,6 @@ class Game
     private:
         void    generateFood();
         bool	eatFood();
-        bool ev;
         int _height;
         int _width;
         GUI gui;

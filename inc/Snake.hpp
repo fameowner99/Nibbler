@@ -2,7 +2,7 @@
 
 #define  SNAKE_HPP
 
-#include "../inc/Object.hpp"
+#include "Object.hpp"
 #include "Position.hpp"
 #include <vector>
 #include <list>
@@ -23,6 +23,7 @@ class Snake
         void    snakeInitialize(int x, int y);
         Position    getVectorOfMoving();
         void        setVectorOfMoving(int x, int y);
+        void        setVectorOfMoving(Position );
     private:
         std::list<Object> _parts;
         Position _vectorOfMoving; // vector where will move head, vector will change by pressing on turn buttons

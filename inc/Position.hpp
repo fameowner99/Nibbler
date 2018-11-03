@@ -8,6 +8,7 @@ class Position
         int x;
         int y;
         bool operator==(const Position &rhs);
+        Position&operator=(const Position &rhs);
 };
 
 #endif

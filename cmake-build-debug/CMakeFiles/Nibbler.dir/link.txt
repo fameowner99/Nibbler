@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Nibbler.dir/src/Game.cpp.o CMakeFiles/Nibbler.dir/src/GUI.cpp.o CMakeFiles/Nibbler.dir/src/main.cpp.o CMakeFiles/Nibbler.dir/src/Object.cpp.o CMakeFiles/Nibbler.dir/src/Snake.cpp.o CMakeFiles/Nibbler.dir/src/Position.cpp.o  -o Nibbler /usr/lib/x86_64-linux-gnu/libSDL2.so 

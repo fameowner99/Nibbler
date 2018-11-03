@@ -1,5 +1,5 @@
-#include "../inc/Snake.hpp"
-#include "../inc/Game.hpp"
+#include "Snake.hpp"
+#include "Game.hpp"
 #include <iostream>
 
 Snake::Snake() {
@@ -11,6 +11,12 @@ Snake::~Snake() {}
 Snake::Snake(Snake &rhs)
 {
     *this = rhs;
+}
+
+void         Snake::setVectorOfMoving(Position vec)
+{
+    _vectorOfMoving.x = vec.x;
+    _vectorOfMoving.y = vec.y;
 }
 
 void Snake::moveSnake()

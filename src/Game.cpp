@@ -1,4 +1,4 @@
-#include "../inc/Game.hpp"
+#include "Game.hpp"
 #include <iostream>
 
 Game::Game(): _height(0), _width(0)
@@ -19,7 +19,6 @@ Game::Game(int hight, int width): _height(hight), _width(width)
     vectorOfTurn.x = snake.getVectorOfMoving().x;
     vectorOfTurn.y = snake.getVectorOfMoving().y;
     gameOver = false;
-    ev = true;
     loop();
 }
 
@@ -28,20 +27,21 @@ void Game::loop()
     gui.createWindow(_height, _width);
 
 
-
    while (!gameOver)
     {
         start = SDL_GetTicks();
         if (_food.empty())
             generateFood();
-        gameOver = gui.checkEvent(snake, vectorOfTurn);
+        vectorOfTurn = gui.checkEvent(snake.getVectorOfMoving());
+
+
         gui.drawFood(_food);
         gui.drawSnake(snake.getParts());
 
         if (eatFood())
         {
             snake.addPart();
-            system("canberra-gtk-play -f ../sounds/eat.wav &");
+           // system("canberra-gtk-play -f ../sounds/eat.wav &");
         }
         gui.updateWindwow();
         snake.setVectorOfMoving(vectorOfTurn.x,vectorOfTurn.y);
@@ -52,7 +52,7 @@ void Game::loop()
             SDL_Delay(1000);
         }
 
-        if (1000 / FPS > SDL_GetTicks() - start)
+        if (1000 / FPS > SDL_GetTicks() - start) // change delay to sleep
         {
             SDL_Delay(1000 / FPS - (SDL_GetTicks() - start));
         }
