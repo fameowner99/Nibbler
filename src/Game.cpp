@@ -1,15 +1,32 @@
 #include "Game.hpp"
 #include <iostream>
 
+
+bool Game::connectLibrary(const char* path)
+{
+    if (!(handler = dlopen(path, RTLD_LAZY)))
+        return (false);
+    create = (IGUI * (*)())dlsym(handler, "create_object");
+    destroy = (void (*)(IGUI *))dlsym(handler, "destroy_object");
+    gui = (IGUI *)create();
+    return (true);
+}
+
 Game::Game(): _height(0), _width(0)
 {
     gameOver = false;
+    gui = nullptr;
+    handler = nullptr;
+
 
 }
 
 Game::~Game()
 {
-
+    if (handler)
+    {
+        destroy(gui);
+    }
 }
 
 Game::Game(int hight, int width): _height(hight), _width(width)
@@ -24,28 +41,35 @@ Game::Game(int hight, int width): _height(hight), _width(width)
 
 void Game::loop()
 {
-    gui.createWindow(_height, _width);
+    
+    
 
 
+    if (!connectLibrary("./GUI_sdl.dylib"))
+    {
+        std::cerr << "Cannot open library: " << dlerror() << '\n';
+        return ;
+    }
+    gui->createWindow(_height, _width);
    while (!gameOver)
     {
         start = SDL_GetTicks();
         if (_food.empty())
             generateFood();
-        vectorOfTurn = gui.checkEvent(snake.getVectorOfMoving());
+        vectorOfTurn = gui->checkEvent(snake.getVectorOfMoving());
 
 
-        gui.drawFood(_food);
-        gui.drawSnake(snake.getParts());
+        gui->drawFood(_food);
+        gui->drawSnake(snake.getParts());
 
         if (eatFood())
         {
             snake.addPart();
-           // system("canberra-gtk-play -f ../sounds/eat.wav &");
         }
-        gui.updateWindwow();
+        gui->updateWindow();
         snake.setVectorOfMoving(vectorOfTurn.x,vectorOfTurn.y);
         snake.moveSnake();
+        //*********MUST BE CHANGED**************** from sdl_delay to another delay***
         if ((gameOver = snake.checkCollision(_width / CELL_WIDTH, _height / CELL_HEIGHT ))
             || (gameOver = snake.checkSelfCollision()))
         {
@@ -56,7 +80,7 @@ void Game::loop()
         {
             SDL_Delay(1000 / FPS - (SDL_GetTicks() - start));
         }
-
+        //*********MUST BE CHANGED****************
 
     }
 

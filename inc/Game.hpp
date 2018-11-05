@@ -6,8 +6,11 @@
 #include "Snake.hpp"
 #include <vector>
 #include <random>
-#include "GUI.hpp" // will be deleted after creating dynamic library
-#include "GUI1.hpp"
+#include <unistd.h>
+
+#include "GUI_sdl.hpp" // will be deleted after creating dynamic library
+
+#include <dlfcn.h>
 
 # define CELL_HEIGHT 50
 # define CELL_WIDTH 50
@@ -15,7 +18,7 @@
 # define MIN_WIDTH 500
 # define MAX_HEIGHT 2000
 # define MAX_WIDTH 2000
-# define FPS 5
+# define FPS 7
 
 
 class Game
@@ -26,16 +29,20 @@ class Game
         Game(int hight, int width);
         void loop(); // game loop here (update, move etc.)
     private:
-        void    generateFood();
-        bool	eatFood();
+        bool connectLibrary(const char* path); //connect dynamic library with handler, return false if file is missing
+        void    generateFood(); //add food to vector
+        bool	eatFood(); //if position of head == position food => food delete
         int _height;
         int _width;
-        GUI gui;
+        IGUI *gui;
+        void *handler; //pointer for dynamic library, null if error
         Snake snake;
         std::vector<Object> _food;
-        bool gameOver;
-        Uint32       start;
-		Position vectorOfTurn;
+        bool gameOver; //variable for game LOOP
+        Uint32     start; //should be changed (see end of game loop (FPS))
+		Position vectorOfTurn; //current vector of moving 
+        IGUI* (*create)(); //function pointer to create object of class in dynamic library
+        void (*destroy)(IGUI*); // destroy object from dynamic library
 };
 
 #endif
